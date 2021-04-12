@@ -22,6 +22,10 @@ for line in df.iterrows():
     ID = str_volume+str(int(line[1][0]))
   value = list(line[1].values[1:])
   nom_infos = ["Titre", "Année", "Date Précise", "Lieu", "Nb. Pages", "Notice", "Note"]
+  try:
+    value[1] = int(value[1])
+  except:
+    pass
   value = {nom_infos[i]:value[i] for i in range(len(value))}
   if ID in dic:
     volume+=1
