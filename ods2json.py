@@ -26,6 +26,10 @@ for line in df.iterrows():
     value[1] = int(value[1])
   except:
     pass
+  try:
+    value[4] = int(value[4])
+  except:
+    pass
   value = {nom_infos[i]:value[i] for i in range(len(value))}
   if ID in dic:
     volume+=1
