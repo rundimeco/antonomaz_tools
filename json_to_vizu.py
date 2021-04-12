@@ -4,7 +4,8 @@ import re
 
 header = open_utf8("visualisation_tools/head.html")
 
-dic_titres = get_json("dico_titres_ID.json")
+dic_titres = get_json("data/dico_titres_ID.json")
+
 out = "<table class = 'styled-table'>\n"
 table_header = []
 for ID, infos in dic_titres.items():
