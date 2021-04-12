@@ -16,7 +16,7 @@ for ID, infos in dic_titres.items():
   elems = [infos[cle] for cle in table_header]
   elems = [str(x) if str(x)!="null" and str(x)!="None" else "" for x in elems]
   this_info = "</td><td>".join(elems)
-  l = f"  <tr><td>{ID}</td><td>{this_info}%s</td></tr>\n"
+  l = f"  <tr><td>{ID}</td><td>{this_info}</td></tr>\n"
   out +=l
 out+="</table>"
 
