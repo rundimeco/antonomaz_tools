@@ -1,0 +1,3 @@
+{
+  "ID_inconnue": "Identifiant inconnu. La liste Moreau va de 1 à 4082, le supplémente 1 va de  1 à 209, le supplément 2 va de 1 à 90. Pour les suppléments Moreau la syntae est la suivante: SupX_ID où X est le numéro du supplément (1 ou 2) et ID est le numéro du titre dans le supplément."
+}
