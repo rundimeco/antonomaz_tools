@@ -1,13 +1,50 @@
 <html>
   <head>
-    <title>Clustering de Memes</title>
+    <title>Bibliographie Moreau (version du 9 avril 2021)</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="visualisation_tools/memes.css" />
   </head>
 
+<script>
+function myFunction(ID, j) {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById(ID);
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  if(filter.length!=1 ){
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[j];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  }
+}
+</script>
+<!--<table class = 'styled-table'>-->
   <body>
   <main>
-{{content}}
+
+<table id = 'myTable'>
+  <td><input type="text" id="id_moreau" onkeyup="myFunction('id_moreau', 0)" placeholder="."></td>
+  <td><input type="text" id="titre" onkeyup="myFunction('titre', 1)" placeholder="."></td>
+  <td><input type="text" id="date" onkeyup="myFunction('date', 2)" placeholder="."></td>
+  <td><input type="text" id="datePrecise" onkeyup="myFunction('datePrecise', 3)" placeholder="."></td>
+  <td><input type="text" id="lieu" onkeyup="myFunction('lieu', 4)" placeholder="."></td>
+  <td><input type="text" id="pages" onkeyup="myFunction('pages', 5)" placeholder="."></td>
+  <td><input type="text" id="notice" onkeyup="myFunction('notice', 6)" placeholder="..."></td>
+  <td><input type="text" id="note" onkeyup="myFunction('note', 7)" placeholder="..."></td>
+
+{{content_table}}
+</table>
   </main>
   </body>
 </html
