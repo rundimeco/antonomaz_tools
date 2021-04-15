@@ -10,6 +10,8 @@ out = ""
 table_header = []
 cpt = 0
 for ID, infos in dic_titres.items():
+#  if int(ID)>10:
+#    break
   if len(table_header) == 0:
     table_header = infos.keys()
     out+="  <tr><th>ID</th><th>%s</th></tr>\n"%"</th><th>".join(table_header)
