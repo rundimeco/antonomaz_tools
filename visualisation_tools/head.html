@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>Bibliographie Moreau (version du 9 avril 2021)</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="visualisation_tools/memes.css" />
+  </head>
+
+<script>
+function myFunction(ID, j) {
+  var input, filter, table, tr, td, i, txtValue;
+  var NBres;
+  input = document.getElementById(ID);
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  NBres = 0;
+  var seuil = 0;
+  if(ID=="titre" || ID=="notice"){
+    seuil=2;
+    }
+  if(filter.length>seuil ){
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[j];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+	NBres=NBres+1;
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  document.getElementById("results").innerHTML= "Nombre d'entrées après filtrage : "+NBres+"/"+tr.length;
+  }
+  else{
+  document.getElementById("results").innerHTML= "";
+  if(filter.length==0){//vérifier qu'il ne fait pas benner les filtres
+    var size = 0;
+    for (j = 1; j < 6; j++) {
+      td = tr[0].getElementsByTagName("td")[j];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+	size = size+txtValue.length;
+	}
+    }
+    if(size==0){
+      for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "";
+      }
+    }
+    }
+  }
+}
+</script>
+<!--<table class = 'styled-table'>-->
+  <body>
+  <main>
+<div id="results"></div>
+<table id = 'myTable'>
+<tr>
+  <td><input type="text" id="id_moreau" onkeyup="myFunction('id_moreau', 0)" placeholder="."></td>
+  <td><input type="text" id="titre" onkeyup="myFunction('titre', 1)" placeholder="."></td>
+  <td><input type="text" id="date" onkeyup="myFunction('date', 2)" placeholder="."></td>
+  <td><input type="text" id="datePrecise" onkeyup="myFunction('datePrecise', 3)" placeholder="."></td>
+  <td><input type="text" id="lieu" onkeyup="myFunction('lieu', 4)" placeholder="."></td>
+  <td><input type="text" id="pages" onkeyup="myFunction('pages', 5)" placeholder="."></td>
+  <td><input type="text" id="notice" onkeyup="myFunction('notice', 6)" placeholder="..."></td>
+  <td><input type="text" id="note" onkeyup="myFunction('note', 7)" placeholder="..."></td>
+</tr>
+{{content_table}}
+</table>
+  </main>
+  </body>
+</html
