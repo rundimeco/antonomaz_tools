@@ -63,3 +63,11 @@ if __name__=="__main__":
   print("\nTest numéro dans plusieurs suppléments (3)")
   #Numéro présent dans plusieurs suppléments
   print(get_from_ID(3)["Statut"])
+
+  year = 1649
+  print("\nEpisodes par année")
+  print(get_episodes_by_year(year))
+
+  year = 1649
+  print("\nTous les épisodes")
+  print(get_all_episodes())

@@ -3,6 +3,43 @@ import jellyfish
 import codecs
 import re
 
+def get_by_episode(nom):
+  pass
+
+def get_episode_by_id(ID):
+  pass
+
+def get_ids_same_episode(ID):
+  pass
+
+def get_episodes_by_year(year):
+  """
+  Avec une année, on a touss les épisodes de cette année
+  """
+  year = str(year)
+  data = get_json("data/chronologie_moreau.json")
+  if year not in data:
+    res = {"Statut": f"Année '{year}' non trouvée", "Requête":year, "Années présentes":list(data.keys())}
+    return res 
+  etiquettes = [x["Etiquette Moreau"] for x in data[year]]
+  res = {"Statut": "OK", "Requête":year, "Résultat":etiquettes}
+  return res
+
+def get_all_episodes():
+  """
+  TousAvec une année, on a toutes les Mazarinades datées de cette année
+  """
+  all_years = get_episodes_by_year(000)["Années présentes"]
+  etiquettes = []
+  for year in all_years:
+    etiquettes.append({year : get_episodes_by_year(year)["Résultat"]})
+  res = {"Statut": "OK", "Requête":year, "Résultat":etiquettes}
+  return res
+
+def get_chronological():
+  pass
+
+
 def get_json(path):
   """ Ouvre un fichier JSON"""
   f = open(path)
