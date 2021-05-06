@@ -106,12 +106,15 @@ def write_utf8(path, out, verbose =True, is_json = False):
   if verbose:
     print("Output written in '%s'"%path)
 
+# +
+##get_closest("reine de france", number = 2)
 
-get_closest("reine de france", number = 2)
+# +
+#get_closest("Reine de France", number = 2)
 
-get_closest("Reine de France", number = 2)
-
-get_closest("Reine de France", number = 2, path_data = "clean.json")
-get_closest("Reine de France", number = 2, path_data = "dirty.json")
+# +
+#get_closest("Reine de France", number = 2, path_data = "clean.json")
+#get_closest("Reine de France", number = 2, path_data = "dirty.json")
+# -
 
 
