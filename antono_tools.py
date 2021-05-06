@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import jellyfish
 import codecs
@@ -47,13 +48,16 @@ def get_json(path):
   f.close()
   return liste
 
-def get_closest(title, number = 5):
+def get_closest(title, path_data="data/liste_titres_ID.json", number = 5):
   """ 
-  En entrée, une chaîne de caractère (et en option le nombre de titres proches à retourner, par défaut : 5)
+  En entrée, une chaîne de caractère (
+      en option:
+          le chemin du json du corpus considéré (par défaut: data/liste_titres_ID.json)
+          le nombre de titres proches à retourner ( par défaut : 5)
   En sortie, la liste triée par ordre décroissant de similarité sous forme d'un triplet:
     distance, ID_moreau, titre concerné
   """
-  liste = get_json("data/liste_titres_ID.json")
+  liste = get_json(path_data)
  
   mots_titre = set(title.split())
   filtered_list = []
@@ -95,5 +99,8 @@ def write_utf8(path, out, verbose =True, is_json = False):
   w.close()
   if verbose:
     print("Output written in '%s'"%path)
+
+
+get_closest("reine", number = 2, path_data = "toto.json")
 
 
