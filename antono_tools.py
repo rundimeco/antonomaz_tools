@@ -48,7 +48,7 @@ def get_json(path):
   f.close()
   return liste
 
-def get_closest(title, path_data="data/liste_titres_ID.json", number = 5):
+def get_closest(title, path_data="data/liste_titres_ID.json", number = 5, lowercase =True):
   """ 
   En entrée, une chaîne de caractère (
       en option:
@@ -58,17 +58,23 @@ def get_closest(title, path_data="data/liste_titres_ID.json", number = 5):
     distance, ID_moreau, titre concerné
   """
   liste = get_json(path_data)
+  if lowercase==True:
+    title = title.lower()
  
   mots_titre = set(title.split())
   filtered_list = []
   for ID, chaine in  liste:
+    if lowercase==True:
+        chaine = chaine.lower()
     mots_candidat = set(chaine.split())
     inter = mots_titre.intersection(mots_candidat)
     ##Si moins de 5 mots en commun (ou de la moitié) inutile de garder le candidat
-    if len(inter)>5 or len(inter)>(len(mots_titre)/2):
+    if len(inter)>3 or len(inter)>=(len(mots_titre)/2):
         filtered_list.append([len(inter), ID, chaine])
   f2 = []
   for len_inter, ID, chaine in filtered_list:
+    if lowercase==True:
+        chaine = chaine.lower()
     sim = jellyfish.jaro_winkler(title,chaine)
     ## On garde quand la similarité est supérieure à 0.5
     if sim>0.5:
@@ -101,6 +107,11 @@ def write_utf8(path, out, verbose =True, is_json = False):
     print("Output written in '%s'"%path)
 
 
-get_closest("reine", number = 2, path_data = "toto.json")
+get_closest("reine de france", number = 2)
+
+get_closest("Reine de France", number = 2)
+
+get_closest("Reine de France", number = 2, path_data = "clean.json")
+get_closest("Reine de France", number = 2, path_data = "dirty.json")
 
 
