@@ -21,3 +21,15 @@ Génère deux Json (dico_titres_ID et liste_titres_ID) à partir du tableur ods
 ***json_to_vizu.py*** (Beta)
 
 Génère un tableau Html à partir de dico_titres_ID.json
+
+
+Avancée sur la similarité:
+
+- stocker le vectoriseur (tf-df ou count ?)
+- observer les alignements
+- comment régler la question des pages 1 ?
+
+Comparer avec text-pair ?
+
+Qu'en tirer pour la phraséologie ?
+
