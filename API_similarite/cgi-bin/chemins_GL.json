@@ -1,0 +1,8 @@
+{
+"cgi":"../cgi-bin/",
+"dic_features":"../cgi-bin/Classifieur/dic_features.pkl",
+"model":"../cgi-bin/Classifieur/model.pkl",
+"prediction":"../cgi-bin/prediction.txt",
+"sauvegarde_texte":"../cgi-bin/texte.txt",
+"scipt_pickle":"../cgi-bin/script_pickle.py"
+}
