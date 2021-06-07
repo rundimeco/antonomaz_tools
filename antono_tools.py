@@ -47,7 +47,50 @@ def get_json(path):
   liste = json.load(f)
   f.close()
   return liste
+def get_closest_v2(title, number = 10, lowercase=True, 
+                path_compare ="data/all_burlesque_pages_corrected.json", word_filter = True,
+                seuil_simil = False, javeliser = False):
+    """ 
+  En entrée, une chaîne de caractère et en option :
+    le nombre de titres proches à retourner, par défaut : 10
+    mettre en minuscules, par défaut: non
+    le chemin des documents à comparer
+    word_filter: premier filtre sur le nombre de mots en commun (impact sur le temps de calcul ?)
+    seuil_simil: si activé (flottant) on ne donne que les docs au delà du seuil
+  En sortie, la liste triée par ordre décroissant de similarité sous forme d'un triplet:
+    distance, ID_moreau, titre concerné
+  """
+    liste_depart = get_json(path_compare)
+    #all_burlesque_pages_original_ocr.json
+    #all_burlesque_pages_ocr_without_linebreak.json
+    #all_burlesque_pages_corrected_without_linebreak.json
+    #all_burlesque_pages_corrected.json
+    #all_burlesque_pages_ocr_without_space.json
+    liste=[]
+    if lowercase==True:
+        for i in liste_depart:
+            liste.append(word.lower() for word in i)
+    mots_titre = set(title.split())
+    filtered_list = []
+    for ID, chaine in  liste:
+        mots_candidat = set(chaine.split())
+        inter = mots_titre.intersection(mots_candidat)
+    ##Si moins de 5 mots en commun (ou de la moitié) inutile de garder le candidat
+        if len(inter)>5 or len(inter)>(len(mots_titre)/2) or word_filter==False:
+            filtered_list.append([len(inter), ID, chaine])
+    f2 = []
+    for len_inter, ID, chaine in filtered_list:
+        if javeliser==True:
+            title  = re.sub("\n| {2,}", " ", title)
+            chaine = re.sub("\n| {2,}", " ", chaine)
+        sim = jellyfish.jaro_winkler(title,chaine)
+    ## On garde quand la similarité est supérieure à 0.5
+        f2.append([sim, ID, chaine])
+    if seuil_simil!=False:
+        f2 = [x for x in f2 if x[0]>seuil_simil]
+    return sorted(f2, reverse=True)[:number]
 
+# old function :
 def get_closest(title, path_data="data/liste_titres_ID.json", number = 5, lowercase =True):
   """ 
   En entrée, une chaîne de caractère (
