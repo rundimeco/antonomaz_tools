@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for page in pages %}
+        <h2>Moreau {{ page['item'] }}, page {{ page['id_page'] }}</h2>
+        
+        <img src="{{page['url_num']}}" alt="Moreau {{ page['item'] }}, page {{ page['id_page'] }}" width="500" height="600">
+        
+        <a href="{{ url_for('similarites', page_id=page['id']) }}">Pages similaires...</a>
+        <hr>
+    {% endfor %}
+{% endblock %}

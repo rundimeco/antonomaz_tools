@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}ANTONOMAZ {% endblock %}</h1>
+    {% for page in pages %}
+        
+        <a href="{{ url_for('pages', id_moreau=page['item']) }}"><h1>Moreau {{ page['item'] }}, page {{ page['id_page'] }}</h1></a>
+        <img src="{{page['url_num']}}" alt="Moreau {{ page['item'] }}, page {{ page['id_page'] }}" width="500" height="600">
+    
+        <hr>
+    {% endfor %}
+{% endblock %}
+

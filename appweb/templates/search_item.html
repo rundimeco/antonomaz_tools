@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        <label for="id_moreau">Identifiant Moreau : </label>
+        <select id="id_moreau">
+        <option value="empty" selected>-- Sélectionnez un identifiant --</option>
+        {% for item in items %}
+            <option value="{{ request.form['id_moreau'] }}">{{item['id_moreau']}}</option>
+        {% endfor %}
+        </select>
+        <input type="submit" value="Rechercher">
+    </form>
+
+{% endblock %}
