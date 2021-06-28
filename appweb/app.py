@@ -50,12 +50,12 @@ def index():
 def a_propos():
     return render_template('a_propos.html')
 
-@app.route('/search_item', methods=('GET', 'POST'))
+@app.route('/search_item/', methods=('GET', 'POST'))
 def search_item():
     items = get_items()
     if request.method == 'POST':
-        id_moreau = request.form['id_moreau']
-        return redirect(url_for('pages', id_moreau=id_moreau))
+        moreau = request.form['id_moreau']
+        return redirect(url_for('pages', id_moreau=moreau))
     return render_template('search_item.html', items=items)
 
 @app.route('/similarites/<int:page_id>')

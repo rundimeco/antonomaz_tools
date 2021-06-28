@@ -3,10 +3,21 @@
 {% block content %}
     <form method="post">
         <label for="id_moreau">Identifiant Moreau : </label>
-        <select id="id_moreau">
+        <select name="id_moreau">
         <option value="empty" selected>-- Sélectionnez un identifiant --</option>
         {% for item in items %}
-            <option value="{{ request.form['id_moreau'] }}">{{item['id_moreau']}}</option>
+            <option value="{{item['id_moreau']}}">{{item['id_moreau']}}</option>
+        {% endfor %}
+        </select>
+        <input type="submit" value="Rechercher">
+    </form>
+
+    <form method="post">
+        <label for="id_moreau">Titre : </label>
+        <select name="id_moreau">
+        <option value="empty" selected>-- Sélectionnez un titre --</option>
+        {% for item in items %}
+            <option value="{{item['id_moreau']}}">{{item['titre']}}</option>
         {% endfor %}
         </select>
         <input type="submit" value="Rechercher">
